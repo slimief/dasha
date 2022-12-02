@@ -2,20 +2,13 @@
    include('connect.php');
     
     session_start();
-    if (!$_SESSION['da']) {
-        header('Location: /');
-    }
-    $connect = mysqli_connect('localhost', 'root', 'root', 'laba3php');
-    $sql = mysqli_query($connect, "SELECT * FROM users");
-    $row = mysqli_fetch_array($sql);
-
-    if(isset($_POST['login1'])){
-        $username = $_POST['username'];
-        $slovaHTML = array('<br>' , '<b>' , '</b>' , '<font>' , '</font>' , '<center>' , '</center>');
-        $slovaSQL = '/show databases|create databases|use|source|drop database|show tables|create table|describe|insert|update|delete|drop table|select|select distinct|where|group by|having|order by|beetween|like|in|join|view/';
-        $username = strip_tags($username, $slovaHTML);
-        $username = preg_replace($slovaSQL, '', $username);
-        $query = "INSERT INTO `comm`(comments) VALUES ('$username')";
+    if(isset($_POST['otpravka'])){
+        $username = $_POST['textarea'];
+        $html = array('<br>' , '<b>' , '</b>' , '<font>' , '</font>' , '<center>' , '</center>');
+        $SQL = '/show|create|use|source|drop|show|create|insert|update|delete|drop|select|where|beetween|like|in|join|view/';
+        $username = strip_tags($textarea, $html);
+        $username = preg_replace($SQL, '', $textarea);
+        $query = "INSERT INTO `comm`(comments) VALUES ('$textarea')";
         $sql = mysqli_query($mysqli, $query);
             if ($sql){
 
@@ -90,8 +83,8 @@ a {
 
 <body>
     <form method="post" action="">
-    <textarea id="textarea" name="username" ></textarea>
-    <button type="submit" name="login1" value="login1">Отправить</button>
+    <textarea id="textarea" name="textarea" ></textarea>
+    <button type="submit" name="otpravka" value="otpravka">Отправить</button>
     <a href = "logout.php?do=logout">Выход</a>
 </form>
 
