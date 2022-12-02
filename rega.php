@@ -2,9 +2,9 @@
 session_start();
 include('connect.php');
 if(isset($_POST['login1'])){
-$p1 = $_POST['password'];
-$p2 = $_POST['password1'];
-if($p2 != $p1 and strlen($p1) < 3 and strlen($p1) >60){
+$pass1 = $_POST['password'];
+$pass2 = $_POST['password1'];
+if($pass2 != $pass1 and strlen($pass1) < 3 and strlen($pass1) >60){
 echo("Пароли не совпадают!");
 }
 else{
@@ -33,11 +33,11 @@ $mysqli->close();
 <body>
 <form method="post" action="">
 <label>Логин</label>
-<input type="text" name="username" pattern="[a-zA-Z0-9]+" required />
+<input type="text" name="username" pattern="[a-zA-Z0-9]+"/>
 <label>Пароль</label>
-<input type="password" name="password" required />
+<input type="password" name="password"/>
 <label>Повторите пароль</label>
-<input type="password" name="password1" required />
+<input type="password" name="password1"/>
 <button type="submit" name="login1" value="login1">Регистрация</button>
 </form>
 </body>
